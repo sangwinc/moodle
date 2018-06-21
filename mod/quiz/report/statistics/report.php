@@ -535,9 +535,10 @@ class quiz_statistics_report extends quiz_default_report {
         // Configure what to display.
         $fieldstoplot = [
             'facility' => get_string('facility', 'quiz_statistics'),
+            'discriminationindex' => get_string('discrimination_index', 'quiz_statistics'),
             'discriminativeefficiency' => get_string('discriminative_efficiency', 'quiz_statistics')
         ];
-        $fieldstoplotfactor = ['facility' => 100, 'discriminativeefficiency' => 1];
+        $fieldstoplotfactor = ['facility' => 100, 'discriminationindex' => 1, 'discriminativeefficiency' => 1];
 
         // Prepare the arrays to hold the data.
         $xdata = [];
