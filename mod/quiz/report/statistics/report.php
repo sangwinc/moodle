@@ -548,15 +548,17 @@ class quiz_statistics_report extends quiz_default_report {
         // Fill in the data for each question.
         foreach ($questionstatistics as $questionstatistic) {
             $number = $questions[$questionstatistic->slot]->number;
-            $xdata[$number] = $number;
+            if ($questionstatistic->variant == '') {
+                $xdata[$number] = $number;
 
-            foreach ($fieldstoplot as $fieldtoplot => $notused) {
-                $value = $questionstatistic->$fieldtoplot;
-                if (is_null($value)) {
-                    $value = 0;
+                foreach ($fieldstoplot as $fieldtoplot => $notused) {
+                    $value = $questionstatistic->$fieldtoplot;
+                    if (is_null($value)) {
+                        $value = 0;
+                    }
+                    $value *= $fieldstoplotfactor[$fieldtoplot];
+                    $ydata[$fieldtoplot][$number] = number_format($value, 2);
                 }
-                $value *= $fieldstoplotfactor[$fieldtoplot];
-                $ydata[$fieldtoplot][$number] = number_format($value, 2);
             }
         }
 
